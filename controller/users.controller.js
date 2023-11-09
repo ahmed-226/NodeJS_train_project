@@ -22,7 +22,7 @@ const register = async (req, res) => {
     // if (!errors.isEmpty()) {
     //     return res.status(404).json({status:httpStatusText.FAIL,data :errors.array()})
     // }
-    console.log(req.body);
+    // console.log(req.body);
     const { firstname, lastname, email, password, role } = req.body
 
     const olduser = await User.findOne({ email: email })
@@ -56,9 +56,9 @@ const login = async (req, res) => {
     }
 
     const user = await User.findOne({ email: email })
-    console.log(user)
+    // console.log(user)
     const matchedPassword = await bcrypt.compare(password, user.password)
-    console.log(matchedPassword)
+    // console.log(matchedPassword)
 
     if (user && matchedPassword) {
         const token = await generateJWTtoken({ email: user.email, id: user.id, role: user.role })
